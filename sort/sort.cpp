@@ -38,10 +38,11 @@ template <typename Type>
 void Sort<Type>::_MergeSort(DataList<Type> & sortData,int begin,int end)
 {
     int pivotpos = 0;
+    std::cout<<"in _MergeSort before if begin="<<begin<<",end="<<end<<std::endl;
     if(begin < end)
     {
         pivotpos = (begin + end)/2;
-        std::cout<<"pivotpos="<<pivotpos<<std::endl;
+        std::cout<<"in _MergeSort pivotpos="<<pivotpos<<std::endl;
         _MergeSort(sortData,begin,pivotpos);
         _MergeSort(sortData,pivotpos+1,end);
         Merge(sortData,begin,pivotpos,end);
@@ -52,6 +53,7 @@ void Sort<Type>::_MergeSort(DataList<Type> & sortData,int begin,int end)
 template <typename Type>
 void Sort<Type>::Merge(DataList<Type> & sortData,int begin,int pivotpos,int end)
 {
+    std::cout<<"in Merge begin="<<begin<<",pivotpos="<<pivotpos<<",end="<<end<<std::endl;
     int n1 = pivotpos - begin + 1;
     int n2 = end - pivotpos -1 ;
 
@@ -87,6 +89,7 @@ void Sort<Type>::Merge(DataList<Type> & sortData,int begin,int pivotpos,int end)
             sortData[k] = R[j];
             ++j;
         }
+        std::cout<<"in Merge sortData["<<k<<"]="<<sortData[k]<<std::endl;
     }
 }
 
