@@ -18,8 +18,16 @@ int main()
     std::cout<<"Before MergeSort:"<<std::endl;
     MergeSortData.PrintList();
     sort.MergeSort(MergeSortData);
-    std::cout<<"After MergeSortData:"<<std::endl;
+    std::cout<<"After MergeSort:"<<std::endl;
     MergeSortData.PrintList();
+
+    //HeapSort
+    DataList<int> HeapSortData(10);
+    std::cout<<"Before HeapSort:"<<std::endl;
+    HeapSortData.PrintList();
+    sort.HeapSort(HeapSortData);
+    std::cout<<"After HeapSort:"<<std::endl;
+    HeapSortData.PrintList();
 
     return 0;
 }

@@ -103,6 +103,54 @@ void Sort<Type>::Merge(DataList<Type> & sortData,int begin,int pivotpos,int end)
     }
 }
 
+template <typename Type>
+void Sort<Type>::HeapSort(DataList<Type> & sortData)
+{
+    BuildMaxHeap(sortData);
+    for(int i = sortData.size()-1;i >= 1; --i)
+    {
+        Swap(sortData[0],sortData[i]);
+        MaxHeapify(sortData,0,i);
+    }
+}
+
+template <typename Type>
+void Sort<Type>::BuildMaxHeap(DataList<Type> & dataList)
+{
+    for(int i = dataList.size()/2; i >= 0; --i)
+    {
+        MaxHeapify(dataList,i,dataList.size());
+    }
+}
+
+template <typename Type>
+void Sort<Type>::MaxHeapify(DataList<Type> & dataList,int index,int end)
+{
+    int l = Left(index);
+    int r = Right(index);
+
+    int largest = 0;
+    if(l < end && dataList[l] > dataList[index])
+    {
+        largest = l;
+    }
+    else
+    {
+        largest = index;
+    }
+
+    if(r < end && dataList[r] > dataList[largest])
+    {
+        largest = r;
+    }
+
+    if(largest != index)
+    {
+        Swap(dataList[largest],dataList[index]);
+        MaxHeapify(dataList,largest,end);
+    }
+}
+
 //模板类在编译时如果不显示实例化则编译时不会将具体的模板编译到.o中，导致链接不到
 //还可以把main函数放到同一个cpp文件中，如下
 //常用的方法是模板类的函数实现均放到.h中，这种可能的弊端是重复编译
