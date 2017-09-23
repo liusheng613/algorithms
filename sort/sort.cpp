@@ -180,6 +180,33 @@ int Sort<Type>::Partition(DataList<Type> & sortData,int begin,int end)
     return i+1;
 }
 
+template <typename Type>
+void Sort<Type>::CountingSort(DataList<Type> & sortData,DataList<Type> & OutputData,Type maxData)
+{
+    DataList<Type> tmpData(maxData);
+    for(int i=0;i<tmpData.size();++i)
+    {
+        tmpData[i] = 0;
+    }
+
+    for(int j=0;j<sortData.size();++j)
+    {
+        tmpData[sortData[j]] = tmpData[sortData[j]] + 1;
+    }
+
+    for(int i = 1;i < maxData;++i)
+    {
+        tmpData[i] = tmpData[i] + tmpData[i-1];
+    }
+
+    for(int j = sortData.size()-1;j >= 0;--j)
+    {
+        OutputData[tmpData[sortData[j]]-1] = sortData[j];
+        //如果有相同元素则下次插入到对应的位置在现在位置的下一位置
+        tmpData[sortData[j]] = tmpData[sortData[j]] - 1;
+    }
+}
+
 //模板类在编译时如果不显示实例化则编译时不会将具体的模板编译到.o中，导致链接不到
 //还可以把main函数放到同一个cpp文件中，如下
 //常用的方法是模板类的函数实现均放到.h中，这种可能的弊端是重复编译

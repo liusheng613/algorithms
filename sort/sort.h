@@ -21,6 +21,9 @@ public:
 
     //快速排序
     void QuickSort(DataList<Type> & sortData,int begin,int end);
+
+    //计数排序,MaxData为待排序数组的最大值
+    void CountingSort(DataList<Type> & sortData,DataList<Type> & OutputData,Type maxData);
 private:
     void _MergeSort(DataList<Type> & sortData,int begin,int end);
     void Merge(DataList<Type> & sortData,int begin,int pivotpos,int end);  

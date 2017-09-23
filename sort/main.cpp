@@ -37,5 +37,14 @@ int main()
     std::cout<<"After QuickSort:"<<std::endl;
     QuickSortData.PrintList();
 
+    //CountingSort
+    DataList<int> CountingSortData(50);
+    DataList<int> OutputData(50);
+    std::cout<<"Before CountingSort:"<<std::endl;
+    CountingSortData.PrintList();
+    sort.CountingSort(CountingSortData,OutputData,201);
+    std::cout<<"After CountingSort:"<<std::endl;
+    OutputData.PrintList();
+
     return 0;
 }
