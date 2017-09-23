@@ -151,6 +151,35 @@ void Sort<Type>::MaxHeapify(DataList<Type> & dataList,int index,int end)
     }
 }
 
+//begin,end is the sortData begin and end position(index)
+template <typename Type>
+void Sort<Type>::QuickSort(DataList<Type> & sortData,int begin,int end)
+{
+    if(begin < end)
+    {
+        int pivotpos = Partition(sortData,begin,end);
+        QuickSort(sortData,begin,pivotpos-1);
+        QuickSort(sortData,pivotpos+1,end);
+    }
+}
+
+template <typename Type>
+int Sort<Type>::Partition(DataList<Type> & sortData,int begin,int end)
+{
+    Type x = sortData[end];
+    int i = begin - 1;
+    for(int j=begin;j<end;++j)
+    {
+        if(sortData[j] <= x)
+        {
+            ++i;
+            Swap(sortData[i],sortData[j]);
+        }
+    }
+    Swap(sortData[i+1],sortData[end]);
+    return i+1;
+}
+
 //模板类在编译时如果不显示实例化则编译时不会将具体的模板编译到.o中，导致链接不到
 //还可以把main函数放到同一个cpp文件中，如下
 //常用的方法是模板类的函数实现均放到.h中，这种可能的弊端是重复编译

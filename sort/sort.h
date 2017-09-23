@@ -18,6 +18,9 @@ public:
 
     //堆排序
     void HeapSort(DataList<Type> & sortData);
+
+    //快速排序
+    void QuickSort(DataList<Type> & sortData,int begin,int end);
 private:
     void _MergeSort(DataList<Type> & sortData,int begin,int end);
     void Merge(DataList<Type> & sortData,int begin,int pivotpos,int end);  
@@ -32,6 +35,11 @@ private:
     void BuildMaxHeap(DataList<Type> & dataList);
     //最大堆化
     void MaxHeapify(DataList<Type> & dataList,int index,int end);
+
     void Swap(Type & a,Type & b) { Type tmp; tmp = a ; a = b; b = tmp;}
+
+
+    //快速排序数组划分
+    int Partition(DataList<Type> & sortData,int begin,int end);
 };
 #endif

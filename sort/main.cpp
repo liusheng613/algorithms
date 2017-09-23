@@ -29,5 +29,13 @@ int main()
     std::cout<<"After HeapSort:"<<std::endl;
     HeapSortData.PrintList();
 
+    //QuickSort
+    DataList<int> QuickSortData(50);
+    std::cout<<"Before QuickSort:"<<std::endl;
+    QuickSortData.PrintList();
+    sort.QuickSort(QuickSortData,0,49);
+    std::cout<<"After QuickSort:"<<std::endl;
+    QuickSortData.PrintList();
+
     return 0;
 }
