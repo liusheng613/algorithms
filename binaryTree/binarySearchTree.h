@@ -2,13 +2,13 @@
 #define BINARY_SEARCH_TREE
 
 template <typename Type>
-struct BinaryTree 
+struct BinaryTreeNode 
 {
     Type key;
-    struct BinaryTree * parent;
-    struct BinaryTree * left;
-    struct BinaryTree * right;
-    BinaryTree()
+    struct BinaryTreeNode * parent;
+    struct BinaryTreeNode * left;
+    struct BinaryTreeNode * right;
+    BinaryTreeNode()
     {
         parent = nullptr;
         left = nullptr;
@@ -22,16 +22,27 @@ class BinarySearchTree
 public:
     BinarySearchTree();
     ~BinarySearchTree();
-    void InOrderTreeWalk(BinaryTree <Type> * root);
-    // BinaryTree <Type> * TreeSearch(BinaryTree <Type> * root,Type k);
-    // BinaryTree <Type> * IterativeTreeSearch(BinaryTree <Type> * root,Type k);
-    // BinaryTree <Type> * TreeMinimum(BinaryTree <Type> * root);
-     //BinaryTree <Type> * TreeSucessor(BinaryTree <Type> * root);
-     void TreeInsert(BinaryTree <Type> * & root,BinaryTree <Type> * node);
-    // void TransPlant(BinaryTree <Type> * root,BinaryTree <Type> * pOld,BinaryTree <Type> * pNew);
-    // void TreeDelete(BinaryTree <Type> * root，BinaryTree <Type> * node);
+
+    void InOrderTreeWalk(BinaryTreeNode <Type> * root);
+    void InOrderTreeWalk();
+    BinaryTreeNode <Type> * TreeSearch(BinaryTreeNode <Type> * root,Type k);//recursion search
+    BinaryTreeNode <Type> * IterativeTreeSearch(BinaryTreeNode <Type> * root,Type k);//Iterative search
+    BinaryTreeNode <Type> * TreeMinimum(BinaryTreeNode <Type> * root=nullptr);
+    BinaryTreeNode <Type> * TreeMaxmum(BinaryTreeNode <Type> * root=nullptr);
+    BinaryTreeNode <Type> * TreeSuccessor(BinaryTreeNode <Type> * node=nullptr);//find the successor of the Tree root
+
+    void TreeInsert(BinaryTreeNode <Type> * node);
+    void TreeDelete(BinaryTreeNode <Type> * & root,BinaryTreeNode <Type> * & node);
+
+    BinaryTreeNode <Type> * GetRoot() const;
 private:
-    BinaryTree <Type> * m_pBinaryTree;
+    //replace the old node with the new,and adjust the tree
+    void TransPlant(BinaryTreeNode <Type> * & root,BinaryTreeNode <Type> * & pOld,BinaryTreeNode <Type> * & pNew);
+    void CreateTree();
+    void DestroyTree(BinaryTreeNode <Type> * & root);
+    Type GeneratorRandomData(int low,int high);
+private:
+    BinaryTreeNode <Type> * m_pRoot;
 };
 
 #endif

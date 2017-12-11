@@ -87,11 +87,20 @@ void DataList<Type>::clear()
 }
 
 //调用C++11产生更加随机的随机数
+/*
+1.一个给定的随机数发生器一直会生成相同的随机数序列。
+一个函数如果定义了局部的随机数发生器，应该将其（包括引擎和分布对象）定义为static的，
+否则每次调用函数都会生成相同的序列。也就是说定义成static后每次调用还是之前那个发生器，
+第一次调用产生一批随机数，再次调用将产生接下来的随机数，否则每次调用产生的都是最前面的那些随机数。
+
+2.依然需要使用time来做为种子产生每个不同时刻都不同的随机序列，但由于time默认返回的是以秒计的时间，
+所以有可能多次使用的都是相同的种子。
+*/
 template <typename Type>
 void DataList<Type>::GeneratorRandomData(int number,int low,int high)
 {
-    std::default_random_engine engine(time(NULL));
-    std::uniform_int_distribution<Type> distribution(low,high);
+    static std::default_random_engine engine(time(NULL));
+    static std::uniform_int_distribution<Type> distribution(low,high);
 
     for(int i = 0;i<number;++i)
     {
