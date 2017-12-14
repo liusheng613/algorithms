@@ -213,6 +213,7 @@ BinaryTreeNode <Type> * BinarySearchTree<Type>::TreeSuccessor(BinaryTreeNode <Ty
 template <typename Type>
 void BinarySearchTree<Type>::TreeDelete(BinaryTreeNode <Type> * & root,BinaryTreeNode <Type> * & node)
 {
+    BinaryTreeNode <Type> * pDeletedNode = node;
     if(node->left == nullptr)
     {
         TransPlant(root,node,node->right);
@@ -231,10 +232,15 @@ void BinarySearchTree<Type>::TreeDelete(BinaryTreeNode <Type> * & root,BinaryTre
             y->right = node->right;
             y->right->parent = y;
         }
-        TransPlant(root,node,y);
-        y->left = node->left;
-        y->left->parent = y;
+        else
+        {
+            TransPlant(root,node,y);
+            y->left = node->left;
+            y->left->parent = y;
+        }
     }
+    // delete pDeletedNode;
+    // pDeletedNode = nullptr;
 }
 
 template <typename Type>
@@ -257,8 +263,8 @@ void BinarySearchTree<Type>::TransPlant(BinaryTreeNode <Type> * & root,BinaryTre
     {
         pNew->parent = pOld->parent;
     }
-    delete pOld;
-    pOld = nullptr;
+    // delete pOld;
+    // pOld = nullptr;
 }
 
 template <typename Type>

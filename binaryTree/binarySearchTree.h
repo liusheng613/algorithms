@@ -14,6 +14,13 @@ struct BinaryTreeNode
         left = nullptr;
         right = nullptr;
     };
+
+    // ~BinaryTreeNode()
+    // {
+    //     parent = nullptr;
+    //     left = nullptr;
+    //     right = nullptr;
+    // };
 };
 
 template <typename Type>
